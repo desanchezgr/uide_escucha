@@ -1,0 +1,363 @@
+=== LIST REPORTES (ADMIN) ===
+[
+    {
+        "id": 39,
+        "titulo": "Sugerencia para mejorar la biblioteca",
+        "descripcion": "Sugiero que la biblioteca central extienda su horario de atencion hasta las 10pm para facilitar el estudio nocturno.",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-21T21:23:34.718Z",
+        "autor_id": 31,
+        "autor_nombre": "Estudiante"
+    },
+    {
+        "id": 38,
+        "titulo": "Problema con la conexion WiFi en el campus",
+        "descripcion": "Llevo tres dias sin poder conectarme al WiFi de la universidad en el edificio principal. He probado en varios dispositivos y ninguno funciona.",
+        "tipo": "queja",
+        "estado": "resuelto",
+        "creado_en": "2026-07-21T21:23:34.256Z",
+        "autor_id": 31,
+        "autor_nombre": "Estudiante"
+    },
+    {
+        "id": 37,
+        "titulo": "Ba\u00f1o sucio",
+        "descripcion": "El ba\u00f1o esta sucio",
+        "tipo": "queja",
+        "estado": "pendiente",
+        "creado_en": "2026-07-20T21:08:12.745Z",
+        "autor_id": 30,
+        "autor_nombre": "Aurora"
+    },
+    {
+        "id": 36,
+        "titulo": "Ba\u00f1o tapado",
+        "descripcion": "El ba\u00f1o se encontraba en condiciones deplorables",
+        "tipo": "queja",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T19:24:12.493Z",
+        "autor_id": 29,
+        "autor_nombre": "Maria"
+    },
+    {
+        "id": 35,
+        "titulo": "asfgxhu",
+        "descripcion": "asdSFzgxfh",
+        "tipo": "felicitacion",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T08:33:42.478Z",
+        "autor_id": 27,
+        "autor_nombre": "Alexander"
+    },
+    {
+        "id": 34,
+        "titulo": "Reporte de estudiante",
+        "descripcion": "Esto si deberia funcionar para el estudiante correctamente",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:29:17.761Z",
+        "autor_id": 26,
+        "autor_nombre": "Santiago"
+    },
+    {
+        "id": 33,
+        "titulo": "Test imagen final",
+        "descripcion": "Prueba final completa de subida de imagen desde el frontend al servidor de produccion",
+        "tipo": "peticion",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:16:43.414Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 32,
+        "titulo": "Reporte con imagen - funcionando",
+        "descripcion": "Prueba final completa - imagen subida y servida correctamente desde el servidor de produccion",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:15:57.190Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 31,
+        "titulo": "Reporte final con imagen",
+        "descripcion": "Prueba final - imagen subida y servida correctamente desde produccion",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:14:40.882Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 30,
+        "titulo": "Reporte con imagen v4",
+        "descripcion": "Cuarta prueba de imagen - verificando que se puede servir la imagen estatica desde el disco",
+        "tipo": "felicitacion",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:13:46.512Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 29,
+        "titulo": "dsadsa",
+        "descripcion": "dsaasgdhjaskl;",
+        "tipo": "peticion",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:13:21.219Z",
+        "autor_id": 6,
+        "autor_nombre": "Mateo Sebasti\u00e1n"
+    },
+    {
+        "id": 28,
+        "titulo": "Reporte con imagen v3",
+        "descripcion": "Tercera prueba de imagen con logging para debug y ver que esta pasando con el body parse",
+        "tipo": "peticion",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:12:27.636Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 27,
+        "titulo": "Reporte con imagen v2",
+        "descripcion": "Segunda prueba de imagen con body size aumentado a 10mb para verificar que funciona",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:11:10.329Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 26,
+        "titulo": "Reporte con imagen de prueba",
+        "descripcion": "Este reporte tiene una imagen adjunta para verificar que el upload funciona correctamente en produccion",
+        "tipo": "queja",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T08:10:25.101Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 23,
+        "titulo": "Test desde deploy",
+        "descripcion": "Prueba de integracion completa",
+        "tipo": "peticion",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T06:32:49.667Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 21,
+        "titulo": "Reporte de prueba final",
+        "descripcion": "Verificando que el sistema completo funciona correctamente con Neon",
+        "tipo": "queja",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:54:20.645Z",
+        "autor_id": 1,
+        "autor_nombre": "Carlos Alberto"
+    },
+    {
+        "id": 20,
+        "titulo": "Agilidad en soporte t\u00e9cnico de laboratorios",
+        "descripcion": "Agradecimiento al departamento de TI por la r\u00e1pida resoluci\u00f3n del problema en los servidores locales.",
+        "tipo": "felicitacion",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 11,
+        "autor_nombre": "Kevin Daniel"
+    },
+    {
+        "id": 4,
+        "titulo": "Mantenimiento de proyectores",
+        "descripcion": "El proyector del aula 204 presenta fallas de coloraci\u00f3n intermitentes durante las clases.",
+        "tipo": "peticion",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 10,
+        "autor_nombre": "Andrea Carolina"
+    },
+    {
+        "id": 2,
+        "titulo": "Implementaci\u00f3n de m\u00e1s puntos de reciclaje",
+        "descripcion": "Ser\u00eda excelente contar con contenedores diferenciados cerca del bloque de aulas B.",
+        "tipo": "sugerencia",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 8,
+        "autor_nombre": "Mar\u00eda Jos\u00e9"
+    },
+    {
+        "id": 3,
+        "titulo": "Demora en atenci\u00f3n de Secretar\u00eda",
+        "descripcion": "El tr\u00e1mite de homologaci\u00f3n de materias lleva m\u00e1s de dos semanas sin respuesta.",
+        "tipo": "queja",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 9,
+        "autor_nombre": "Santiago Javier"
+    },
+    {
+        "id": 1,
+        "titulo": "Falla de conexi\u00f3n Wi-Fi en laboratorios",
+        "descripcion": "La red UIDE-Students se desconecta constantemente en el Laboratorio 3 de Ingenier\u00eda.",
+        "tipo": "queja",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 6,
+        "autor_nombre": "Mateo Sebasti\u00e1n"
+    },
+    {
+        "id": 5,
+        "titulo": "Aire acondicionado ruidoso",
+        "descripcion": "El sistema de climatizaci\u00f3n del aula 102 emite un ruido excesivo que dificulta escuchar al docente.",
+        "tipo": "queja",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 11,
+        "autor_nombre": "Kevin Daniel"
+    },
+    {
+        "id": 6,
+        "titulo": "Ampliaci\u00f3n de bibliograf\u00eda digital",
+        "descripcion": "Se solicita la adquisici\u00f3n de licencias actualizadas para la base de datos de libros de medicina.",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 12,
+        "autor_nombre": "Elena Beatriz"
+    },
+    {
+        "id": 7,
+        "titulo": "Excelente jornada de integraci\u00f3n acad\u00e9mica",
+        "descripcion": "Felicitaciones al equipo organizador por los eventos culturales del pasado viernes en la sede.",
+        "tipo": "felicitacion",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 15,
+        "autor_nombre": "Dom\u00e9nica Alis"
+    },
+    {
+        "id": 8,
+        "titulo": "Falta de iluminaci\u00f3n en el parqueadero posterior",
+        "descripcion": "El \u00e1rea de parqueaderos externos se encuentra muy oscura a partir de las 19:00, generando inseguridad.",
+        "tipo": "queja",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 16,
+        "autor_nombre": "Bryan Eduardo"
+    },
+    {
+        "id": 9,
+        "titulo": "Microondas adicionales en el \u00e1rea de comedor",
+        "descripcion": "Se forman filas muy largas en el almuerzo, hacen falta al menos dos microondas m\u00e1s.",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 17,
+        "autor_nombre": "Anah\u00ed Bel\u00e9n"
+    },
+    {
+        "id": 10,
+        "titulo": "Instalaci\u00f3n de dispensadores de agua",
+        "descripcion": "Se solicita colocar un dispensador de agua potable filtrada en el tercer piso del bloque administrativo.",
+        "tipo": "peticion",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 18,
+        "autor_nombre": "Christian Omar"
+    },
+    {
+        "id": 11,
+        "titulo": "Actualizaci\u00f3n lenta de notas en el banner",
+        "descripcion": "Las notas del primer parcial a\u00fan no se reflejan completamente en el sistema acad\u00e9mico.",
+        "tipo": "queja",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 20,
+        "autor_nombre": "Ricardo Jos\u00e9"
+    },
+    {
+        "id": 12,
+        "titulo": "Soporte con licencias de software de simulaci\u00f3n",
+        "descripcion": "Requerimos acceso remoto a las licencias de Matlab para culminar los proyectos de fin de ciclo.",
+        "tipo": "peticion",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 21,
+        "autor_nombre": "Gabriela Fernanda"
+    },
+    {
+        "id": 13,
+        "titulo": "Estado de las canchas de uso m\u00faltiple",
+        "descripcion": "La malla met\u00e1lica perimetral de la cancha de f\u00fatbol sala se encuentra desprendida en una esquina.",
+        "tipo": "queja",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 22,
+        "autor_nombre": "Manuel Agust\u00edn"
+    },
+    {
+        "id": 14,
+        "titulo": "Talleres pr\u00e1cticos de seguridad inform\u00e1tica",
+        "descripcion": "Estudiantes de ciclos superiores sugerimos abrir clubes o talleres extracurriculares de hacking \u00e9tico.",
+        "tipo": "sugerencia",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 6,
+        "autor_nombre": "Mateo Sebasti\u00e1n"
+    },
+    {
+        "id": 15,
+        "titulo": "Formularios f\u00edsicos para solicitudes rezagadas",
+        "descripcion": "Habilitar canales alternos cuando la plataforma institucional entra en mantenimiento programado.",
+        "tipo": "peticion",
+        "estado": "resuelto",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 7,
+        "autor_nombre": "Pa\u00fal Francisco"
+    },
+    {
+        "id": 16,
+        "titulo": "Falta de suministros en papeler\u00eda central",
+        "descripcion": "Problemas reiterados por la falta de stock para impresiones de planos a gran escala.",
+        "tipo": "queja",
+        "estado": "rechazado",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 13,
+        "autor_nombre": "Luis Antonio"
+    },
+    {
+        "id": 17,
+        "titulo": "Revisi\u00f3n de seguridad en accesos peatonales",
+        "descripcion": "Se solicita control estricto del carnet institucional en el ingreso de la puerta norte.",
+        "tipo": "peticion",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 14,
+        "autor_nombre": "Sandra Mireya"
+    },
+    {
+        "id": 18,
+        "titulo": "Extensi\u00f3n de horario de biblioteca",
+        "descripcion": "Permitir el ingreso y pr\u00e9stamo de libros hasta las 21:00 los d\u00edas previos a ex\u00e1menes finales.",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 19,
+        "autor_nombre": "Patricia Alexandra"
+    },
+    {
+        "id": 19,
+        "titulo": "Humedad en el aula 105",
+        "descripcion": "Existe una filtraci\u00f3n de agua en el techo afectando directamente los asientos de la primera fila.",
+        "tipo": "queja",
+        "estado": "en_proceso",
+        "creado_en": "2026-07-15T05:07:28.761Z",
+        "autor_id": 8,
+        "autor_nombre": "Mar\u00eda Jos\u00e9"
+    }
+]

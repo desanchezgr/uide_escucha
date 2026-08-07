@@ -1,0 +1,120 @@
+-- Migración: tablas para ingreso con cédula (estudiantes) y email (administrativos) + área en reportes
+
+ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS cedula VARCHAR(10) UNIQUE;
+ALTER TABLE reportes ADD COLUMN IF NOT EXISTS area VARCHAR(50);
+
+DROP TABLE IF EXISTS estudiantes_habilitados CASCADE;
+CREATE TABLE estudiantes_habilitados (
+    id SERIAL PRIMARY KEY,
+    cedula VARCHAR(10) NOT NULL UNIQUE,
+    nombres VARCHAR(150) NOT NULL,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS personal_habilitado CASCADE;
+CREATE TABLE personal_habilitado (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    nombres VARCHAR(150) NOT NULL,
+    rol VARCHAR(50) NOT NULL,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Estudiantes (84 registros del Excel)
+INSERT INTO estudiantes_habilitados (cedula, nombres) VALUES
+('1150077467', 'Abad Montesdeoca Nicole Belen'),
+('1900714773', 'Acacho Yangari Daddy Abel'),
+('1105582512', 'Alvarado Gaona Ricardo David'),
+('1105142770', 'Andrade Jimenez Renato Martin'),
+('1105728222', 'Becerra Lima Jhandry David'),
+('1725450710', 'Bustos Castillo Edgar Anderson'),
+('1150880894', 'Calva Vivanco Anderson Michael'),
+('1150620936', 'Campana Valladares Juan Sebastian'),
+('1150493110', 'Campoverde Muñoz Fabian .'),
+('1105335093', 'Campoverde Rodriguez Hector Antonio'),
+('1105946139', 'Carpio Torres Anyela Carolina'),
+('1150235883', 'Carpio Yaguachi Aidan Alexander'),
+('1726206301', 'Carreño Peñaherreta Tais Guadalupe'),
+('1104549165', 'Carrion Espinosa Carlo Sebastián'),
+('1105374936', 'Cartuche Vicente Joseph Steven'),
+('1150076980', 'Castillo Arrobo Fernando Jose'),
+('1105852212', 'Castillo Machero Mateo David'),
+('1754357422', 'Cevallos Montoya Nicolas Alejandro'),
+('1105704116', 'Chicaiza Rodriguez Lander Andres'),
+('1150154639', 'Chininin Camacas Steven Paul'),
+('1105550964', 'Chocho Silva Sebastian Alejandro'),
+('2351137480', 'Coronel Gonzalez Desiree Siomara'),
+('1106251927', 'Diaz Jimenez Gabriel Alexander'),
+('1401011034', 'Fuentes Placencia Juan Esteban'),
+('1105444176', 'Galvez Perez Stephano Dilan'),
+('1150425096', 'Garcia Rojas David Alejandro'),
+('1900870013', 'Giron Chuquirima Kevin Michael'),
+('1105991507', 'Gonzalez Castro Estalin Ismael'),
+('1106002627', 'Gonzalez Guaman Lander Santiago'),
+('1150052023', 'Granda Rojas Juan Pablo'),
+('1150549150', 'Guaman Alvarado Geovanny Alexander'),
+('1150481438', 'Guaman Gonzalez Freddy Emanuel'),
+('1105853152', 'Guanca Guaman Maria Jose'),
+('1104868508', 'Japon Patiño Santiago Fernando'),
+('1105615536', 'Jaramillo Guachon Danny Francisco'),
+('1105310989', 'Jaramillo Peñafiel Jhandry Alexis'),
+('2050001862', 'Jimenez Gaona Madeleine Yanhely'),
+('1105855587', 'Jimenez Jimenez Marjorie .'),
+('1105196420', 'Loarte Aguilar Camila Domenica'),
+('1104871916', 'Lopez Saquicela Diego Fernando Fernando'),
+('0751004417', 'Macas Montoya Osyual Yoel'),
+('1150532404', 'Martinez Jimenez Wilson Rene'),
+('1105830812', 'Masache Rengel Deyvi Hernan'),
+('1105386898', 'Medina Cambisaca Janneth Nayerly'),
+('1105719619', 'Medina Mendoza Angel Fernando'),
+('1105337032', 'Merchan Cambizaca Jair Alejandro'),
+('1105710774', 'Merchan Coronel Mateo Sebastian'),
+('1105808529', 'Montaño Ludeña Victor Manuel'),
+('1105676066', 'Mora Guanín Virginia Isabel'),
+('1106003930', 'Morales Sarango Erick Daniel'),
+('1751308865', 'Morocho Grageda Alejandro David'),
+('0503384042', 'Orbea Urgiles Malena Jovanna'),
+('0750799553', 'Ordoñez Leon Milena Yamileth'),
+('1105581845', 'Orellana Esparza Cristina Lisbeth'),
+('1105607525', 'Ortega Saitana Bruno Xavier'),
+('1150864393', 'Pacheco Lozano Manuel Alejandro'),
+('1105116808', 'Paladines Godoy Angel Ronaldinho'),
+('1150373791', 'Pardo Dávila Eduardo Gabriel'),
+('1105512758', 'Peralta Cordova Ivan Eduardo'),
+('1104543523', 'Perez Cuenca Anthony Bryan'),
+('1104659758', 'Poma Medina Luis Eduardo'),
+('1105183535', 'Quezada Ordoñez Franco Rene'),
+('1150708046', 'Quizhpe Leon Jose Andres'),
+('1950091304', 'Ramirez Romero Luis Eduardo'),
+('1150712824', 'Rios Fernandez Gabriel Eduardo'),
+('1150295325', 'Rios Rios Ricardo Sebastian'),
+('1150296174', 'Rios Rios Santiago Alexander'),
+('1150028551', 'Rodas Melgar Felix Agustin'),
+('1105859399', 'Rodriguez Juela Dennis Leonardo'),
+('1105181968', 'Rojas Granda Paula Alejandra'),
+('0706112091', 'Romero Bravo James Luis'),
+('1105703076', 'Ruiz Sinche Yostin Daniel'),
+('1106061698', 'Salinas Ramon Christian Alexander'),
+('0704567478', 'Sanchez Granda Anthony Ivan'),
+('0704567486', 'Sanchez Granda Derky Alejandro'),
+('1105356560', 'Sarango Cango Angel Pablo'),
+('1104535081', 'Sarango Zumba Gabriel Alejandro'),
+('1105078149', 'Soto Leon Jhosty Jhair'),
+('1150984175', 'Suarez Armijos Kevin Andres'),
+('1950017366', 'Torres Soto Marlon Savier'),
+('1104645666', 'Vallejo Ludeña Irvin Rene'),
+('1105703985', 'Valverde Erazo Evelyn Patricia'),
+('1105193682', 'Venegas Cordero Alddrin Damian'),
+('1950143857', 'Zhuma Jaramillo Aurora Marina');
+
+-- Personal administrativo habilitado (ejemplos por rol)
+TRUNCATE TABLE personal_habilitado;
+INSERT INTO personal_habilitado (email, nombres, rol) VALUES
+('soporte@uide.edu.ec',    'Personal de Sistemas y Soporte TI',     'ti_soporte'),
+('biblioteca@uide.edu.ec', 'Personal de Biblioteca',               'bibliotecario'),
+('conserje@uide.edu.ec',   'Personal de Limpieza y Conserjería',   'conserje'),
+('mantenimiento@uide.edu.ec', 'Técnico de Mantenimiento',          'mantenimiento'),
+('prorector@uide.edu.ec',  'Prorector Académico',                  'prorector'),
+('secretaria@uide.edu.ec', 'Secretaría General',                   'secretaria'),
+('bienestar@uide.edu.ec',  'Bienestar Universitario',              'bienestar universitario'),
+('financiero@uide.edu.ec', 'Colecturía y Pagos',                   'financiero');

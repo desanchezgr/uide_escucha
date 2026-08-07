@@ -1,0 +1,22 @@
+schema: spec-driven
+
+context: |
+  Tech stack: React 19 + Vite + Material UI (Frontend), Express 5 + TypeScript (Backend), Neon PostgreSQL (Database)
+  Architecture: SPA with REST API, JWT authentication, role-based access control
+  Domain: University complaint/suggestion management system (UIDE Escucha)
+  Language: Spanish (UI and API responses)
+  Deployment: Docker + Nginx, AWS EC2
+  Monorepo with npm workspaces (client/, server/)
+
+rules:
+  proposal:
+    - Write in Spanish
+    - Include affected files and components
+    - Reference existing bugs when applicable
+  specs:
+    - Include API endpoint validation rules
+    - Include database schema constraints
+    - Include frontend form validation
+  tasks:
+    - Break into atomic, testable units
+    - Include verification steps

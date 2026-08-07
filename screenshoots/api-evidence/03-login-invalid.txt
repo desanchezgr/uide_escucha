@@ -1,0 +1,4 @@
+=== LOGIN INVALID CREDENTIALS ===
+{
+    "error": "Credenciales inv\u00e1lidas."
+}

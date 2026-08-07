@@ -1,0 +1,4 @@
+=== REGISTER INVALID EMAIL ===
+{
+    "error": "El email debe ser institucional (@uide.edu.ec)."
+}

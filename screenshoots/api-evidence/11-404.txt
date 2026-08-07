@@ -1,0 +1,5 @@
+=== 404 NOT FOUND ===
+{
+    "error": "Recurso no encontrado",
+    "message": "La ruta solicitada no existe."
+}

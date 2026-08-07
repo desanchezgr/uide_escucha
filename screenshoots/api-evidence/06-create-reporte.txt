@@ -1,0 +1,10 @@
+=== CREATE REPORTE ===
+{
+    "id": 41,
+    "titulo": "Problema con el estacionamiento",
+    "descripcion": "No hay suficientes espacios de estacionamiento para estudiantes en el horario matutino. Esto genera retrasos constantes.",
+    "tipo": "queja",
+    "estado": "pendiente",
+    "creado_en": "2026-07-21T21:26:46.590Z",
+    "imagenes": []
+}

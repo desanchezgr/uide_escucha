@@ -1,0 +1,17 @@
+// validar login
+post:http://localhost:3000/api/auth/login
+{ "email": "camendoza@uide.edu.ec", "password": "password123" }
+http://localhost:3000/api/reportes
+
+
+// ingresar reportes
+http://localhost:3000/api/reportes
+{
+  "titulo": "Problema con el campus",
+  "descripcion": "No puedo ingresar al edificio central desde las 8:00 am.",
+  "tipo": "sugerencia",
+  "categoria_id": 1,
+  "usuario_id": 1
+}
+
+

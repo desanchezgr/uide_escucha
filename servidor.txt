@@ -1,0 +1,36 @@
+npx tsx ./mcp-server.ts
+
+{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"login_cedula","arguments":{"cedula":"0704567486","password":"12345678aA-"}}}
+
+consulta de repoortes
+{"jsonrpc": "2.0", "id": 1, "method": "tools/list"}
+
+Simmular creación de nuevo reporte
+{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"crear_reporte","arguments":{"descripcion":"La conexión WiFi en el laboratorio de ingeniería ha mejorado notablemente hoy.","tipo":"sugerencia","emocion":"😊","area":"ti_soporte"}}}
+
+control de erroores
+{"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "crear_reporte", "arguments": {"titulo": "Test Error", "descripcion": "Intento con correo personal", "categoria": "queja", "correoUsuario": "usuario@gmail.com"}}}
+
+
+login_cedula,
+Autenticar a un estudiante con su cédula.,
+"{""name"": ""login_cedula"", ""arguments"": {""cedula"": ""..."", ""password"": ""...""}}"
+
+login,
+Autenticar con correo institucional.,
+"{""name"": ""login"", ""arguments"": {""email"": ""..."", ""password"": ""...""}}"
+
+login_email_admin,
+Autenticar como personal administrativo.,"{""name"": ""login_email_admin"", ""arguments"": {""email"": ""..."", ""password"": ""...""}}"
+
+crear_reporte,
+"Registrar una nueva queja, sugerencia, petición o felicitación.",
+"{""name"": ""crear_reporte"", ""arguments"": {""descripcion"": ""..."", ...}}"
+
+listar_reportes,
+Ver la lista de reportes guardados (soporta filtros).,
+"{""name"": ""listar_reportes"", ""arguments"": {""estado"": ""pendiente""}}"
+
+obtener_detalle_reporte,
+Consultar la información completa y comentarios de un reporte específico por su ID.,
+"{""name"": ""obtener_detalle_reporte"", ""arguments"": {""id"": ""123""}}"

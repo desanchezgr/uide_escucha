@@ -1,0 +1,23 @@
+=== LIST REPORTES (STUDENT) ===
+[
+    {
+        "id": 39,
+        "titulo": "Sugerencia para mejorar la biblioteca",
+        "descripcion": "Sugiero que la biblioteca central extienda su horario de atencion hasta las 10pm para facilitar el estudio nocturno.",
+        "tipo": "sugerencia",
+        "estado": "pendiente",
+        "creado_en": "2026-07-21T21:23:34.718Z",
+        "autor_id": 31,
+        "autor_nombre": "Estudiante"
+    },
+    {
+        "id": 38,
+        "titulo": "Problema con la conexion WiFi en el campus",
+        "descripcion": "Llevo tres dias sin poder conectarme al WiFi de la universidad en el edificio principal. He probado en varios dispositivos y ninguno funciona.",
+        "tipo": "queja",
+        "estado": "resuelto",
+        "creado_en": "2026-07-21T21:23:34.256Z",
+        "autor_id": 31,
+        "autor_nombre": "Estudiante"
+    }
+]

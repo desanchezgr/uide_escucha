@@ -1,0 +1,4 @@
+=== UNAUTHORIZED ACCESS ===
+{
+    "error": "Token no proporcionado."
+}

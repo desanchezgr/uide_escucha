@@ -1,0 +1,3 @@
+=== DELETE REPORTE (ADMIN) ===
+{"error":"El ticket que intentas eliminar no existe."}
+HTTP Status: 404

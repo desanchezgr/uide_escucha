@@ -1,0 +1,652 @@
+openapi: "3.0.3"
+info:
+  title: "UIDE Escucha API"
+  version: "1.0.0"
+  description: |
+    API REST para el sistema de gestión de reportes, incidentes y sugerencias de la UIDE.
+    Permite a estudiantes crear reportes y a administradores gestionarlos.
+
+servers:
+  - url: "http://localhost:3000"
+    description: "Local development (directo)"
+  - url: "http://localhost/api"
+    description: "Local development (vía nginx proxy)"
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Mensaje de error
+      required:
+        - error
+
+    NotFound:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Recurso no encontrado"
+        message:
+          type: string
+          example: "La ruta solicitada no existe."
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "camendoza@uide.edu.ec"
+        password:
+          type: string
+          example: "password123"
+      required:
+        - email
+        - password
+
+    RegisterRequest:
+      type: object
+      properties:
+        nombres:
+          type: string
+          example: "Juan Carlos"
+        apellidos:
+          type: string
+          example: "Pérez López"
+        email:
+          type: string
+          format: email
+          example: "juan.perez@uide.edu.ec"
+        password:
+          type: string
+          minLength: 6
+          example: "123456"
+      required:
+        - nombres
+        - apellidos
+        - email
+        - password
+
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        usuario:
+          type: object
+          properties:
+            id:
+              type: integer
+            nombre:
+              type: string
+            rol:
+              type: string
+              enum: [estudiante, admin]
+
+    Archivo:
+      type: object
+      properties:
+        archivo_id:
+          type: integer
+        nombre_archivo:
+          type: string
+        ruta_archivo:
+          type: string
+        tipo_archivo:
+          type: string
+          enum: [imagen, documento, pdf]
+        fecha_subida:
+          type: string
+          format: date-time
+
+    Reporte:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID del reporte
+        titulo:
+          type: string
+          maxLength: 200
+        descripcion:
+          type: string
+          maxLength: 2000
+        tipo:
+          type: string
+          enum: [incidente, sugerencia, peticion, felicitacion]
+        estado:
+          type: string
+          enum: [pendiente, en_proceso, resuelto, rechazado]
+        creado_en:
+          type: string
+          format: date-time
+        autor_id:
+          type: integer
+        autor_nombre:
+          type: string
+        imagenes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Archivo"
+
+    CrearReporteRequest:
+      type: object
+      properties:
+        titulo:
+          type: string
+          minLength: 5
+          maxLength: 200
+          example: "Aire acondicionado dañado"
+        descripcion:
+          type: string
+          minLength: 10
+          maxLength: 2000
+          example: "El aire acondicionado del aula 203 no enfría desde hace una semana."
+        tipo:
+          type: string
+          enum: [incidente, sugerencia, peticion, felicitacion]
+        imagen_base64:
+          type: string
+          description: "Imagen en base64 (opcional)"
+        imagen_nombre:
+          type: string
+          description: "Nombre original del archivo (requerido si imagen_base64)"
+        imagen_tipo:
+          type: string
+          description: "MIME type del archivo (requerido si imagen_base64)"
+      required:
+        - titulo
+        - descripcion
+        - tipo
+
+    ActualizarReporteRequest:
+      type: object
+      properties:
+        titulo:
+          type: string
+          minLength: 5
+          maxLength: 200
+        descripcion:
+          type: string
+          minLength: 10
+          maxLength: 2000
+        tipo:
+          type: string
+          enum: [incidente, sugerencia, peticion, felicitacion]
+        estado:
+          type: string
+          enum: [pendiente, en_proceso, resuelto, rechazado]
+
+    Comentario:
+      type: object
+      properties:
+        comentario_id:
+          type: integer
+        reporte_id:
+          type: integer
+        usuario_id:
+          type: integer
+        autor_nombre:
+          type: string
+        autor_rol:
+          type: string
+          enum: [estudiante, admin]
+        comentario:
+          type: string
+          maxLength: 2000
+        fecha_comentario:
+          type: string
+          format: date-time
+
+    CrearComentarioRequest:
+      type: object
+      properties:
+        comentario:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          example: "Se ha derivado al departamento de mantenimiento para su revisión."
+      required:
+        - comentario
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "ok"
+        timestamp:
+          type: string
+          format: date-time
+
+paths:
+  /health:
+    get:
+      summary: "Verificar estado del servidor"
+      description: "Endpoint público para verificar que el servidor esté funcionando."
+      tags:
+        - Health
+      responses:
+        "200":
+          description: "Servidor funcionando correctamente"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+
+  /api/auth/register:
+    post:
+      summary: "Registrar nuevo usuario"
+      description: |
+        Registra un nuevo estudiante con correo institucional @uide.edu.ec.
+        El usuario se crea con rol "estudiante" por defecto.
+      tags:
+        - Autenticación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: "Usuario creado exitosamente"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: "Datos inválidos (campos faltantes, email no institucional, password < 6 chars)"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: "El correo ya está registrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/auth/login:
+    post:
+      summary: "Iniciar sesión"
+      description: |
+        Autentica un usuario con su email institucional y contraseña.
+        Devuelve un JWT para usar en endpoints protegidos.
+      tags:
+        - Autenticación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: "Autenticación exitosa"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: "Email o password faltantes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Credenciales inválidas"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/reportes:
+    get:
+      summary: "Listar reportes"
+      description: |
+        Retorna la lista de reportes.
+        - **Admin**: ve todos los reportes del sistema.
+        - **Estudiante**: ve solo sus propios reportes.
+      tags:
+        - Reportes
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Lista de reportes obtenida correctamente"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Reporte"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      summary: "Crear reporte"
+      description: |
+        Crea un nuevo reporte. **Solo accesible para usuarios con rol estudiante.**
+        Opcionalmente puede incluir una imagen en base64.
+      tags:
+        - Reportes
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrearReporteRequest"
+      responses:
+        "201":
+          description: "Reporte creado exitosamente"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reporte"
+        "400":
+          description: "Error de validación (Zod) o datos inválidos"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: "Solo los estudiantes pueden crear reportes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/reportes/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: "ID del reporte"
+        schema:
+          type: integer
+
+    get:
+      summary: "Obtener reporte por ID"
+      description: |
+        Retorna un reporte específico con sus imágenes adjuntas.
+        - **Estudiante**: solo puede ver sus propios reportes.
+        - **Admin**: puede ver cualquier reporte.
+      tags:
+        - Reportes
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Reporte encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reporte"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: "Estudiante intenta ver un reporte ajeno"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Reporte no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    patch:
+      summary: "Actualizar reporte"
+      description: |
+        Actualiza uno o más campos de un reporte. **Solo accesible para admin.**
+        No se puede modificar un reporte con estado `resuelto` o `rechazado`.
+      tags:
+        - Reportes
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActualizarReporteRequest"
+      responses:
+        "200":
+          description: "Reporte actualizado correctamente"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reporte"
+        "400":
+          description: "Error de negocio (ticket cerrado) o datos inválidos"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: "Se requiere rol admin"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Reporte no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      summary: "Eliminar reporte"
+      description: |
+        Elimina un reporte. **Solo accesible para admin.**
+        Solo se permite eliminar reportes en estado `pendiente`.
+      tags:
+        - Reportes
+      security:
+        - BearerAuth: []
+      responses:
+        "204":
+          description: "Reporte eliminado correctamente (sin contenido)"
+        "400":
+          description: "Solo se pueden eliminar reportes pendientes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: "Se requiere rol admin"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Reporte no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/reportes/imagen/{filename}:
+    get:
+      summary: "Obtener imagen adjunta"
+      description: "Sirve archivos de imagen subidos a los reportes. Endpoint público."
+      tags:
+        - Reportes
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          description: "Nombre del archivo de imagen"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Archivo de imagen"
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: "Archivo no encontrado"
+
+  /api/reportes/{id}/comentarios:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: "ID del reporte"
+        schema:
+          type: integer
+
+    get:
+      summary: "Listar comentarios de un reporte"
+      description: |
+        Retorna los comentarios/respuestas de un reporte.
+        - **Admin**: puede ver comentarios de cualquier reporte.
+        - **Estudiante**: solo puede ver comentarios de sus propios reportes.
+      tags:
+        - Comentarios
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Lista de comentarios"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comentario"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Reporte no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      summary: "Agregar comentario a un reporte"
+      description: |
+        Agrega un comentario/respuesta a un reporte. **Solo accesible para admin.**
+      tags:
+        - Comentarios
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrearComentarioRequest"
+      responses:
+        "201":
+          description: "Comentario creado exitosamente"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comentario"
+        "400":
+          description: "Error de validación (Zod)"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Token no proporcionado o inválido"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: "Se requiere rol admin"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Reporte no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/{path}:
+    parameters:
+      - name: path
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: "Ruta no encontrada (catch-all)"
+      description: "Cualquier ruta /api/* no definida devuelve 404."
+      tags:
+        - System
+      responses:
+        "404":
+          description: "Recurso no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"

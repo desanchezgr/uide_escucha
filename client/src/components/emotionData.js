@@ -1,0 +1,45 @@
+export const EMOCION_LABELS = {
+  "molesto:1": "Molesto",
+  "disgustado:2": "Disgustado",
+  "enojado:3": "Enojado",
+  "frustrado:4": "Frustrado",
+  "contento:1": "Contento",
+  "satisfecho:2": "Satisfecho",
+  "feliz:3": "Feliz",
+  "euforico:4": "Euforico",
+  "idea:1": "Idea",
+  "mejora:2": "Mejora",
+  "innovacion:3": "Innovacion",
+  "propuesta:4": "Propuesta",
+  "solicitud:1": "Solicitud",
+  "necesidad:2": "Necesidad",
+  "urgencia:3": "Urgencia",
+  "colaboracion:4": "Colaboracion",
+};
+
+export const EMOCION_ICONS = {
+  "molesto:1": "sentiment_dissatisfied",
+  "disgustado:2": "sentiment_very_dissatisfied",
+  "enojado:3": "mood_bad",
+  "frustrado:4": "sentiment_extremely_dissatisfied",
+  "contento:1": "sentiment_satisfied",
+  "satisfecho:2": "sentiment_very_satisfied",
+  "feliz:3": "mood",
+  "euforico:4": "sentiment_excited",
+  "idea:1": "lightbulb",
+  "mejora:2": "trending_up",
+  "innovacion:3": "auto_awesome",
+  "propuesta:4": "edit_note",
+  "solicitud:1": "help",
+  "necesidad:2": "priority_high",
+  "urgencia:3": "campaign",
+  "colaboracion:4": "diversity_3",
+};
+
+export const EMOCION_COLORS = {
+  queja: { bg: "#fde9ef", fg: "#ba1a1a" },
+  incidente: { bg: "#fde9ef", fg: "#ba1a1a" },
+  felicitacion: { bg: "#e8f7ed", fg: "#1f7a3f" },
+  sugerencia: { bg: "#fff5db", fg: "#e8871e" },
+  peticion: { bg: "#e3f2fd", fg: "#1565c0" },
+};
