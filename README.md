@@ -30,6 +30,9 @@ Plataforma web institucional para que la comunidad de la UIDE registre quejas, s
 - **Gestión de reportes:** crear, listar, actualizar y eliminar quejas, sugerencias, felicitaciones y peticiones
 - **Control de acceso:** los estudiantes solo ven sus propios reportes, los administradores gestionan todos
 - **Dashboard** con resumen de reportes por estado
+- **Filtro de fechas** en lista de reportes sin overlap
+- **Stats por estudiante** usando datos reales del backend
+- **Visualización 3D** del campus UIDE con Three.js
 
 ---
 
